@@ -4,6 +4,8 @@
 ![Stack](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20JS-orange)
 ![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-8A63D2)
 
+**🔗 線上版 Live Demo：<https://ambrosecheng-bot.github.io/forest-bath/>**
+
 一個為近年移英 BNO 港人而設的**森林浴（Shinrin-yoku）自然療癒**招生頁。用科學與森林，邀請社群報名一個**免費、7 週、7 主題的電郵課程（Educational Email Course, EEC）**，課程尾聲設 **2026 年 9 月 12 日**實體工作坊。
 
 本專案為單一自足的 `index.html`（HTML + 內嵌 CSS + vanilla JavaScript），**無需任何 build step 或框架**，可直接部署至 GitHub Pages。
@@ -90,10 +92,10 @@ npx serve .
 2. 到 repo 的 **Settings → Pages**。
 3. 在 **Build and deployment → Source** 選 **Deploy from a branch**。
 4. **Branch** 選 `main`、資料夾選 `/ (root)`，按 **Save**。
-5. 稍候片刻，頁面會發佈於：
+5. 稍候片刻，頁面會發佈於（本專案的實際網址）：
 
    ```
-   https://<你的帳號>.github.io/<repo 名稱>/
+   https://ambrosecheng-bot.github.io/forest-bath/
    ```
 
 > 分享網址取自 `window.location.href`，一經部署便自動採用真實網址，無需改動程式碼。
