@@ -1,5 +1,6 @@
 import { sendSignupEmail } from './sendSignupEmail.js';
-
+import { addSignupData, getAllSignupData, db } from './firebase.js';
+import { collection, query, where, limit, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
   /* ---------------------------------------------------------------
      報名表單收件端點
