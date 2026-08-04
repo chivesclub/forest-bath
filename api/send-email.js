@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 export default async function handler(req, res) {
   // 1. Handle CORS (Allow your GitHub Pages site to access this API)
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', 'https://chivesclub.github.io/forest-bath/'); // Replace with your GitHub Pages URL
+  res.setHeader('Access-Control-Allow-Origin', 'https://chivesclub.github.io'); // Replace with your GitHub Pages URL
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
