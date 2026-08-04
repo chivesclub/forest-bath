@@ -46,11 +46,17 @@
 
 ```
 .
-├── index.html      # 整個網站（HTML + 內嵌 CSS + JS）
-└── README.md       # 本文件
+├── index.html          # 網站主體（HTML + 內嵌 CSS + JS，可讀可改）
+├── assets/             # 圖片
+│   ├── hero.jpg        # Hero 背景（Slide 1）
+│   ├── pain.jpg        # 為什麼這是你需要的（Slide 3）
+│   ├── science-bg.jpg  # 科學區背景（Slide 4）
+│   ├── workshop.jpg    # 課程終點 · 實體體驗（Slide 6）
+│   └── signup.jpg      # 報名區（Slide 8）
+└── README.md           # 本文件
 ```
 
-> 目前所有內容都在單一 `index.html` 內。如日後要加圖片，建議新增 `assets/` 資料夾存放。
+> `index.html` 是可直接閱讀與修改的標準 HTML／CSS／JS；所有圖片放在 `assets/`。要換圖，把 `assets/` 內的檔案換成同名新圖即可。
 
 ---
 
