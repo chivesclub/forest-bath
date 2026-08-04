@@ -46,7 +46,7 @@ submitBtn.addEventListener("click", function () {
   var done = function () { formCard.classList.add("is-done"); };
 
   if (SIGNUP_ENDPOINT) {
-    const response = await fetch(SIGNUP_ENDPOINT, {
+    fetch(SIGNUP_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: data
