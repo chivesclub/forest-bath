@@ -33,6 +33,7 @@ import { collection, query, where, limit, getDocs } from "https://www.gstatic.co
   submitBtn.addEventListener("click", function () {
     var email = emailEl.value.trim();
     var name  = nameEl.value.trim();
+    const data = JSON.stringify({ name: name, email: email });
     if (!isEmail(email)) {
       emailEl.focus();
       emailEl.style.borderColor = "#C75E17";
@@ -45,19 +46,20 @@ import { collection, query, where, limit, getDocs } from "https://www.gstatic.co
     var done = function () { formCard.classList.add("is-done"); };
 
     if (SIGNUP_ENDPOINT) {
-      fetch(SIGNUP_ENDPOINT, {
+      const response = await fetch(SIGNUP_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({ name: name, email: email, course: "森林浴 EEC 2026 Q3" })
+        body: data
       }).then(done).catch(done);
-      sendSignupEmail(email);
     } else {
       console.warn("[森林浴] 尚未設定 SIGNUP_ENDPOINT，本次報名未實際寄出。");
       setTimeout(done, 500);
     }
 
-
-    //Add database code here
+    if (response.ok){
+      sendSignupEmail(email);
+      addSignupData(data);
+    }
   });
 
   /* ---------- 提示訊息 ---------- */
