@@ -58,7 +58,7 @@ import { collection, query, where, limit, getDocs } from "https://www.gstatic.co
 
     if (response.ok){
       sendSignupEmail(email);
-      addSignupData(data);
+      addSignupData(data);/////////////////////////////////////////////////////
     }
   });
 
