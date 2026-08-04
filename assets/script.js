@@ -30,35 +30,45 @@ var nameEl    = document.getElementById("name");
 
 function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
-submitBtn.addEventListener("click", function () {
-  var email = emailEl.value.trim();
-  var name  = nameEl.value.trim();
-  const data = JSON.stringify({ name: name, email: email });
+submitBtn.addEventListener("click", async function () {
+  const email = emailEl.value.trim();
+  const name  = nameEl.value.trim();
+  const data = JSON.stringify({ name: name, email: email, course: "森林浴 EEC 2026 Q3" });
+  
   if (!isEmail(email)) {
     emailEl.focus();
     emailEl.style.borderColor = "#C75E17";
     showToast("請填寫有效的電郵地址");
     return;
   }
+  
   submitBtn.disabled = true;
   submitBtn.textContent = "報名中…";
 
-  var done = function () { formCard.classList.add("is-done"); };
+  const done = function () { formCard.classList.add("is-done"); };
+  
+  let response = null;
 
   if (SIGNUP_ENDPOINT) {
-    fetch(SIGNUP_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: data
-    }).then(done).catch(done);
+    try {
+      response = await fetch(SIGNUP_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: data
+      });
+      done();
+    } catch (error) {
+      console.error("提交失敗:", error);
+      done();
+    }
   } else {
     console.warn("[森林浴] 尚未設定 SIGNUP_ENDPOINT，本次報名未實際寄出。");
     setTimeout(done, 500);
   }
 
-  if (response.ok){
+  if (response && response.ok){
     sendSignupEmail(email);
-    addSignupData(data);/////////////////////////////////////////////////////
+    addSignupData(data);
   }
 });
 
