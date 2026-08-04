@@ -1,4 +1,4 @@
-function sendSignupEmail{
+function sendSignupEmail(userEmail){
   
 }
 
