@@ -1,4 +1,4 @@
-import { sendSignupEmail } from './sendSignupEmail.js';
+import { sendEmail } from './send-email.js';
 import { addSignupData, getAllSignupData, db } from './firebase.js';
 import { collection, query, where, limit, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
@@ -67,7 +67,7 @@ submitBtn.addEventListener("click", async function () {
   }
 
   if (response && response.ok){
-    sendSignupEmail(email);
+    sendEmail(email, "[TESTING] Confirmation Email", "<p>You've signed up!</p>");
     addSignupData(data);
   }
 });
