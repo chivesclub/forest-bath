@@ -54,6 +54,9 @@ import { sendSignupEmail } from './sendSignupEmail.js';
       console.warn("[森林浴] 尚未設定 SIGNUP_ENDPOINT，本次報名未實際寄出。");
       setTimeout(done, 500);
     }
+
+
+    //Add database code here
   });
 
   /* ---------- 提示訊息 ---------- */
