@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email } = req.body;
+  const { email, subject, content } = req.body;
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
@@ -37,9 +37,8 @@ export default async function handler(req, res) {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: 'Confirmation Email',
-    text: 'Thank you for submitting the form! This is your confirmation.',
-    html: '<p>Thank you for submitting the form! This is your confirmation.</p>',
+    subject: subject,
+    html: content,
   };
 
   // 5. Send the email
