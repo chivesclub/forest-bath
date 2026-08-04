@@ -1,0 +1,24 @@
+{
+  "name": "forest-bath",
+  "version": "1.0.0",
+  "description": "![No build required](https://img.shields.io/badge/no%20build-required-brightgreen) ![Stack](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20JS-orange) ![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-8A63D2)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chivesclub/forest-bath.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/chivesclub/forest-bath/issues"
+  },
+  "homepage": "https://github.com/chivesclub/forest-bath#readme",
+  "dependencies": {
+    "nodemailer": "^9.0.4"
+  }
+}
