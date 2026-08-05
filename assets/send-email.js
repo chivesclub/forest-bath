@@ -1,6 +1,4 @@
 async function sendEmail(email, fileName){
-  const filePath = path.join(process.cwd(), 'templates', fileName);
-
   try {
     // Replace with your actual deployed Vercel domain URL
     const response = await fetch('https://forest-bath-chive-club.vercel.app/api/send-email', {
@@ -8,7 +6,7 @@ async function sendEmail(email, fileName){
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email: email, filePath: filePath }),
+      body: JSON.stringify({ email: email, fileName: fileName }),
     });
 
     const data = await response.json();

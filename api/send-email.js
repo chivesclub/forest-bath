@@ -20,8 +20,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, filePath } = req.body;
-
+  const { email, fileName } = req.body;
+  const filePath = path.join(process.cwd(), 'templates', fileName);
+  
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
   }
