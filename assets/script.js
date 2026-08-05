@@ -33,7 +33,7 @@ function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 submitBtn.addEventListener("click", async function () {
   const email = emailEl.value.trim();
   const name  = nameEl.value.trim();
-  const data = JSON.stringify({ name: name, email: email, course: "森林浴 EEC 2026 Q3" });
+  const data = { name, email };
   
   if (!isEmail(email)) {
     emailEl.focus();
