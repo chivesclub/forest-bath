@@ -45,7 +45,7 @@ export default async function handler(req, res) {
 
   // 4. Set up email details
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: '"Chives Club" <${process.env.EMAIL_USER}>',
     to: email,
     subject: emailSubject,
     html: htmlContent,
