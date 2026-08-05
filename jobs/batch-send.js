@@ -1,6 +1,6 @@
 import { getAllSignupData, updateCount } from './firebase.js';
 
-async function sendEmail(userEmail, count) {
+async function sendEmail(email, count) {
 	var fileName = "Nothing";
     switch (count){
 		case 0: fileName = "day1.html"; break;
@@ -25,14 +25,9 @@ async function sendEmail(userEmail, count) {
 
     const data = await response.json();
 
-    if (response.ok) {
-      alert('Success! Check your inbox.');
-    } else {
-      alert('Error: ' + data.error);
-    }
+    if (!response.ok) console.error('Error: ' + data.error);
   } catch (error) {
     console.error('Network error:', error);
-    alert('Something went wrong connecting to the server.');
   }
 
 }
