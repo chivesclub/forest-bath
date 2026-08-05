@@ -1,5 +1,5 @@
 import { sendEmail } from './send-email.js';
-import { addSignupData, getAllSignupData, db } from './firebase.js';
+import { addSignupData, db } from './firebase.js';
 import { collection, query, where, limit, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 /* ---------------------------------------------------------------
