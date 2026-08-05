@@ -42,7 +42,7 @@ function sendEmail(userEmail, count) {
 async function sendWeeklyEmail() {
   const allData = await getAllSignupData();
   allData.forEach(item => {
-    sendEmail(item.email, item.count);
+    //sendEmail(item.email, item.count);
 	try {
     	if (item.count < 7) {
 			updateCount(item, item.count);
