@@ -1,7 +1,6 @@
 import { getAllSignupData, updateCount } from './firebase.js';
 
-
-function sendEmail(userEmail, count) {
+async function sendEmail(userEmail, count) {
 	var fileName = "Nothing";
     switch (count){
 		case 0: fileName = "day1.html"; break;
