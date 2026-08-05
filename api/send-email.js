@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
   }
-  const filePath = path.join(process.cwd(), 'templates', fileName);
+  const filePath = path.join(process.cwd(), 'api', 'templates', fileName);
   
   // 1. Read the HTML file
   const htmlContent = await fs.readFile(filePath, 'utf-8');
