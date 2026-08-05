@@ -12,7 +12,7 @@ async function sendEmail(email, count) {
 		case 6: fileName = "day7.html"; break;
 		default: return;
 	}
-
+  fileName = "test.html";
   try {
     // Replace with your actual deployed Vercel domain URL
     const response = await fetch('https://forest-bath-eight.vercel.app/api/send-email', {
