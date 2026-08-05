@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/chivesclub/forest-bath#readme",
   "dependencies": {
+    "firebase": "^12.17.1",
     "nodemailer": "^9.0.4"
   }
 }
