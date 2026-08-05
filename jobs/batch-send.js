@@ -39,7 +39,7 @@ function sendEmail(userEmail, count) {
 }
 
 
-async function sendWeeklyEmail() {
+export async function sendWeeklyEmail() {
   const allData = await getAllSignupData();
   allData.forEach(item => {
     //sendEmail(item.email, item.count);
@@ -55,5 +55,3 @@ async function sendWeeklyEmail() {
     
   });
 }
-
-export { sendWeeklyEmail };

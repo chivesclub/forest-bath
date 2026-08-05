@@ -24,12 +24,6 @@ jobs:
           if [ -f package.json ]; then
             npm install
           fi
-
-      - name: Install @emailjs/nodejs
-        run: npm install @emailjs/nodejs
-
-      - name: Install nodemailer
-        run: npm install nodemailer
         
       - name: Execute JavaScript file
-        run: node --experimental-network-imports weekly-run.js
+        run: node --experimental-network-imports jobs/weekly-run.js

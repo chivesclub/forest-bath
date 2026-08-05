@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-import { getFirestore, collection, doc, addDoc, getDocs, serverTimestamp, updateDoc, increment } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -34,28 +34,4 @@ async function addSignupData(data) {
     }
 }
 
-async function getAllSignupData() {
-  // 2. Reference the targeted collection
-  const colRef = collection(db, "signupForest");
-
-  // 3. Fetch the collection snapshot
-  const querySnapshot = await getDocs(colRef);
-
-  // 4. Map or loop through the documents
-  const allDocs = querySnapshot.docs.map(doc => ({
-    id: doc.id,         // The document ID string
-    ...doc.data()       // The document fields object
-  }));
-
-  return allDocs;
-}
-
-// Update count
-async function updateCount(userData, countPara) {
-  const docRef = doc(db, "signup", userData.id)
-  await updateDoc(docRef, {
-      count: countPara+1
-    });
-}
-
-export { addSignupData, getAllSignupData, updateCount, db };
+export { addSignupData, db };
