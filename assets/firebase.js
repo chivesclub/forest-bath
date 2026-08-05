@@ -22,9 +22,10 @@ const db = getFirestore(app);
 
 async function addSignupData(data) {
     try {
+        const parsedData = JSON.parse(data);
         const docRef = await addDoc(collection(db, "signupForest"), {
-            name: data.name,
-            email: data.email,
+            name: parsedData.name,
+            email: parsedData.email,
             count: 0
         });
         console.log("Saved successfully! ID:", docRef.id);
