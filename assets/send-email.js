@@ -1,4 +1,4 @@
-async function sendEmail(email, fileName){
+export async function sendEmail(email, fileName){
   try {
     // Replace with your actual deployed Vercel domain URL
     const response = await fetch('https://forest-bath-eight.vercel.app/api/send-email', {
@@ -21,5 +21,3 @@ async function sendEmail(email, fileName){
     alert('Something went wrong connecting to the server.');
   }
 }
-
-export { sendEmail };
