@@ -59,7 +59,12 @@
 > `index.html` 是可直接閱讀與修改的標準 HTML／CSS／JS；所有圖片放在 `assets/`。要換圖，把 `assets/` 內的檔案換成同名新圖即可。
 
 ---
+## Sending Email
 
+1. `import { sendEmail } from './send-email.js';`
+2. Create HTML email template under the folder `templates`
+3. call `sendEmail(email, fileName)`, `email` is the recipient's email, `fileName` is the name of the HTML template stored under `templates`. (e.g. `"test.html"`)
+---
 ## 🚀 快速開始 / 本地預覽 Quick Start
 
 因為沒有 build step，任選一種方式即可：
