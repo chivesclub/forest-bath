@@ -15,4 +15,4 @@ jobs:
       - name: Run Task
         env:
           FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
-        run: node --experimental-network-imports ./jobs/weekly-run.js
+        run: node ./jobs/weekly-run.js
