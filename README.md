@@ -62,7 +62,7 @@
 ## Sending Email
 
 1. `import { sendEmail } from './send-email.js';`
-2. Create HTML email template under the folder `api/templates`
+2. Create HTML email template under the folder `templates`
 3. In the HTML file, place the subject of the email inside the `<title>` tag
 4. call `sendEmail(email, fileName)`, `email` is the recipient's email, `fileName` is the name of the HTML template stored under `templates`. (e.g. `"test.html"`)
 ---
