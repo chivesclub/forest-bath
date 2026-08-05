@@ -3,7 +3,7 @@ import { initializeApp, cert } from 'firebase-admin/app';
 import { getFirestore, collection, doc, getDocs, updateDoc } from "firebase-admin/firestore";
 
 // Load the secret key from the GitHub Actions environment variable
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
 initializeApp({
   credential: cert(serviceAccount)
