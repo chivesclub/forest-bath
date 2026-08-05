@@ -1,3 +1,3 @@
-import { sendWeeklyEmail } from './asset/batch-send.js'
+import { sendWeeklyEmail } from './assets/batch-send.js'
 
 sendWeeklyEmail();
