@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { readFileSync } from 'fs'; 
+import { promises as fs } from 'fs'; 
 import path from 'path';
 
 export default async function handler(req, res) {
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
 
   // 4. Set up email details
   const mailOptions = {
-    from: '"Chives Club" <${process.env.EMAIL_USER}>',
+    from: `"Chives Club" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: emailSubject,
     html: htmlContent,
