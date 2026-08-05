@@ -4,7 +4,7 @@
 ![Stack](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20JS-orange)
 ![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-8A63D2)
 
-**🔗 線上版 Live Demo：<https://chivesclub.github.io/forest-bath/> or <https://forest-bath-chive-club.vercel.app/>**
+**🔗 線上版 Live Demo：<https://chivesclub.github.io/forest-bath/> or <https://forest-bath-eight.vercel.app/>**
 
 一個為近年移英 BNO 港人而設的**森林浴（Shinrin-yoku）自然療癒**招生頁。用科學與森林，邀請社群報名一個**免費、7 週、7 主題的電郵課程（Educational Email Course, EEC）**，課程尾聲設 **2026 年 9 月 12 日**實體工作坊。
 
