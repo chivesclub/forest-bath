@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, cert } from 'firebase-admin/app';
-import { getFirestore, collection, doc, getDocs, updateDoc } from "firebase-admin/firestore";
+import { getFirestore } from "firebase-admin/firestore"; // Removed the standalone frontend methods
 
 // Load the secret key from the GitHub Actions environment variable
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
@@ -12,13 +12,10 @@ initializeApp({
 const db = getFirestore();
 
 async function getAllSignupData() {
-  // 2. Reference the targeted collection
-  const colRef = collection(db, "signupForest");
+  // 1. Reference and fetch the collection snapshot using admin syntax (.collection().get())
+  const querySnapshot = await db.collection("signupForest").get();
 
-  // 3. Fetch the collection snapshot
-  const querySnapshot = await getDocs(colRef);
-
-  // 4. Map or loop through the documents
+  // 2. Map or loop through the documents
   const allDocs = querySnapshot.docs.map(doc => ({
     id: doc.id,         // The document ID string
     ...doc.data()       // The document fields object
@@ -29,9 +26,11 @@ async function getAllSignupData() {
 
 // Update count
 async function updateCount(userData, countPara) {
-  const docRef = doc(db, "signup", userData.id)
-  await updateDoc(docRef, {
-      count: countPara+1
+  // 3. Reference and update the document using admin syntax (.collection().doc().update())
+  await db.collection("signupForest")
+    .doc(userData.id)
+    .update({
+      count: countPara + 1
     });
 }
 
