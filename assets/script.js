@@ -67,7 +67,7 @@ submitBtn.addEventListener("click", async function () {
   }
 
   if (response && response.ok){
-    sendEmail(email, "[TESTING] Confirmation Email", "<p>You've signed up!</p>");
+    sendEmail(email, "test.html"); // Change file name to email's HTML
     addSignupData(data);
   }
 });

@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer';
+import { readFileSync } from 'fs'; 
+import path from 'path';
 
 export default async function handler(req, res) {
   // 1. Handle CORS (Allow your GitHub Pages site to access this API)
@@ -18,11 +20,18 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, subject, content } = req.body;
+  const { email, filePath } = req.body;
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
   }
+
+  // 1. Read the HTML file
+  let htmlContent = readFileSync(filePath, 'utf8');
+
+  // 2. Extract text between <title> and </title> using a Regular Expression
+  const titleMatch = htmlContent.match(/<title>(.*?)<\/title>/i);
+  const emailSubject = titleMatch ? titleMatch[1] : "Chives Club Email";
 
   // 3. Configure Nodemailer Transporter (Using Gmail as an example)
   const transporter = nodemailer.createTransport({
@@ -37,8 +46,8 @@ export default async function handler(req, res) {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: subject,
-    html: content,
+    subject: emailSubject,
+    html: htmlContent,
   };
 
   // 5. Send the email
