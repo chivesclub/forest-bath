@@ -28,7 +28,7 @@ export default async function handler(req, res) {
   }
 
   // 1. Read the HTML file
-  let htmlContent = readFileSync(filePath, 'utf8');
+  const htmlContent = await fs.readFile(filePath, 'utf-8');
 
   // 2. Extract text between <title> and </title> using a Regular Expression
   const titleMatch = htmlContent.match(/<title>(.*?)<\/title>/i);
