@@ -2,17 +2,39 @@ import { getAllSignupData, updateCount } from './firebase.js';
 
 
 function sendEmail(userEmail, count) {
-	var templateID = "Nothing";
+	var fileName = "Nothing";
     switch (count){
-		case 0: templateID = "template_ia5kmaa"; break;
-		case 1: templateID = "template_e53ugey"; break;
-		case 2: templateID = "template_2csycwb"; break;
-		case 3: templateID = "template_ahnme5f"; break;
-		case 4: templateID = "template_yumuumt"; break;
-		case 5: templateID = "template_e3hx6qv"; break;
-		case 6: templateID = "template_kccr2cu"; break;
+		case 0: fileName = "day1.html"; break;
+		case 1: fileName = "day2.html"; break;
+		case 2: fileName = "day3.html"; break;
+		case 3: fileName = "day4.html"; break;
+		case 4: fileName = "day5.html"; break;
+		case 5: fileName = "day6.html"; break;
+		case 6: fileName = "day7.html"; break;
 		default: return;
 	}
+
+	try {
+    // Replace with your actual deployed Vercel domain URL
+    const response = await fetch('https://forest-bath-eight.vercel.app/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email, fileName: fileName }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert('Success! Check your inbox.');
+    } else {
+      alert('Error: ' + data.error);
+    }
+  } catch (error) {
+    console.error('Network error:', error);
+    alert('Something went wrong connecting to the server.');
+  }
 
 }
 
