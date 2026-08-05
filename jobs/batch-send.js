@@ -13,7 +13,7 @@ async function sendEmail(email, count) {
 		default: return;
 	}
 
-	try {
+  try {
     // Replace with your actual deployed Vercel domain URL
     const response = await fetch('https://forest-bath-eight.vercel.app/api/send-email', {
       method: 'POST',
@@ -23,9 +23,15 @@ async function sendEmail(email, count) {
       body: JSON.stringify({ email: email, fileName: fileName }),
     });
 
-    const data = await response.json();
+     if (!response.ok) {
+      const errorText = await response.text(); // Safely read the HTML/Text error page
+      console.error(`Vercel API failed with status ${response.status}: ${errorText}`);
+      return; // Stop execution for this item so it doesn't try to parse JSON
+    }
 
-    if (!response.ok) console.error('Error: ' + data.error);
+    // 2. Only parse as JSON if the network request was successful
+    const data = await response.json();
+    console.log('Email sent successfully:', data);
   } catch (error) {
     console.error('Network error:', error);
   }
