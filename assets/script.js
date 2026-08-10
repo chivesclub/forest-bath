@@ -67,7 +67,7 @@ submitBtn.addEventListener("click", async function () {
   }
 
   if (response && response.ok){
-    sendEmail(email, "test.html"); // Change file name to email.html
+    sendEmail(email, "day0.html", "day0"); // Change file name to email.html
     addSignupData(data);
   }
 });
