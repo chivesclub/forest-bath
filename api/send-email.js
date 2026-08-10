@@ -27,15 +27,14 @@ export default async function handler(req, res) {
   }
   const filePath = path.join(process.cwd(), 'templates', fileName);
   
-  if (attachments.length > 0) {
+  let attachmentFiles = [];
+  if (attachments) {
     const attachmentFolder = attachments[0];
-    const attachmentFiles = attachments.slice(1).map((attachmentFile) => {
-      // Use unique filename as the CID so you can reference it in HTML (e.g. cid:logo.png)
-      const cidName = attachmentFile; 
-      
+    attachmentFiles = attachments.slice(1).map((attachmentFile) => {
+      const cidName = attachmentFile;
       return {
         filename: attachmentFile,
-        path: path.join(process.cwd(), 'templates', attachmentFolder, attachmentFile), // Bulletproof path resolution
+        path: path.join(process.cwd(), 'templates', attachmentFolder, attachmentFile),
         cid: cidName
       };
     });
