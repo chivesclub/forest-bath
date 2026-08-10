@@ -64,7 +64,8 @@
 1. `import { sendEmail } from './send-email.js';`
 2. Create HTML email template under the folder `templates`
 3. In the HTML file, place the subject of the email inside the `<title>` tag
-4. call `sendEmail(email, fileName)`, `email` is the recipient's email, `fileName` is the name of the HTML template stored under `templates`. (e.g. `"test.html"`)
+4. Create a new folder containing the images that are used by the email.
+5. Call `sendEmail(email, fileName, imageFolderName, image1, image2, ...)` where `email` is the recipient's email. (e.g. `sendEmail(email, "day0.html", "day0", "image1.png", "image2.png", ...)`)
 ---
 ## 🚀 快速開始 / 本地預覽 Quick Start
 
