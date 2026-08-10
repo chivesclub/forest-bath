@@ -32,6 +32,7 @@ export default async function handler(req, res) {
     const attachmentFolder = attachments[0];
     attachmentFiles = attachments.slice(1).map((attachmentFile) => {
       const cidName = attachmentFile;
+      console.log(cidName, path.join(process.cwd(), 'templates', attachmentFolder, attachmentFile));
       return {
         filename: attachmentFile,
         path: path.join(process.cwd(), 'templates', attachmentFolder, attachmentFile),
