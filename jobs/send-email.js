@@ -10,14 +10,7 @@ export async function sendEmail(email, fileName, ...attachments) {
     });
 
     const data = await response.json();
-
-    if (response.ok) {
-      alert('Success! Check your inbox.');
-    } else {
-      alert('Error: ' + data.error);
-    }
   } catch (error) {
     console.error('Network error:', error);
-    alert('Something went wrong connecting to the server.');
   }
 }
