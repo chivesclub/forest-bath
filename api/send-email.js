@@ -2,6 +2,31 @@ import nodemailer from 'nodemailer';
 import { promises as fs } from 'fs'; 
 import path from 'path';
 
+async function getAttachments(folderName) {
+  let attachmentFiles = [];
+
+  if (folderName) {
+    const attachmentFolderPath = path.join(process.cwd(), 'templates', folderName);
+    let fileList = [];
+    try {
+      fileList = await fs.readdir(attachmentFolderPath);
+    } catch (error) {
+      console.error(`Failed to read folder at ${folderName}:`, error);
+    }
+
+    attachmentFiles = fileList.map((attachmentFile) => {
+      const cidName = attachmentFile;
+      return {
+        filename: attachmentFile,
+        path: path.join(process.cwd(), 'templates', folderName, attachmentFile),
+        cid: cidName
+      };
+    });
+  }
+
+  return attachmentFiles;
+}
+
 export default async function handler(req, res) {
   // 1. Handle CORS (Allow your GitHub Pages site to access this API)
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -20,25 +45,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, fileName, attachments } = req.body;
+  const { email, fileName, attachmentFolder } = req.body;
   
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
   }
   const filePath = path.join(process.cwd(), 'templates', fileName);
-  
-  let attachmentFiles = [];
-  if (attachments) {
-    const attachmentFolder = attachments[0];
-    attachmentFiles = attachments.slice(1).map((attachmentFile) => {
-      const cidName = attachmentFile;
-      return {
-        filename: attachmentFile,
-        path: path.join(process.cwd(), 'templates', attachmentFolder, attachmentFile),
-        cid: cidName
-      };
-    });
-  }
+  const attachmentFiles = await getAttachments(attachmentFolder);
   
   // 1. Read the HTML file
   const htmlContent = await fs.readFile(filePath, 'utf-8');

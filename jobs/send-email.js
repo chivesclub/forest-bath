@@ -1,4 +1,4 @@
-export async function sendEmail(email, fileName, ...attachments) {
+export async function sendEmail(email, fileName, attachmentFolder) {
   try {
     // Replace with your actual deployed Vercel domain URL
     const response = await fetch('https://forest-bath-eight.vercel.app/api/send-email', {
@@ -6,7 +6,7 @@ export async function sendEmail(email, fileName, ...attachments) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email: email, fileName: fileName, attachments: attachments }),
+      body: JSON.stringify({ email: email, fileName: fileName, attachmentFolder: attachmentFolder }),
     });
 
     const data = await response.json();

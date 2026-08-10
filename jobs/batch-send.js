@@ -10,7 +10,7 @@ export async function sendWeeklyEmail() {
 
     try {
       // Await email delivery if sendEmail returns a Promise
-      await sendEmail(item.email, `${fileName}.html`, fileName, "image1.png", "image2.png");
+      await sendEmail(item.email, `${fileName}.html`, fileName);
 
       await updateCount(item, item.count);
       console.log("Count increment code executed without runtime errors!");
