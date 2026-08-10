@@ -20,12 +20,26 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, fileName } = req.body;
+  const { email, fileName, attachments } = req.body;
   
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
   }
   const filePath = path.join(process.cwd(), 'templates', fileName);
+  
+  if (attachments.length > 0) {
+    const attachmentFolder = attachments[0];
+    const attachmentFiles = attachments.slice(1).map((attachmentFile) => {
+      // Use unique filename as the CID so you can reference it in HTML (e.g. cid:logo.png)
+      const cidName = attachmentFile; 
+      
+      return {
+        filename: attachmentFile,
+        path: path.join(process.cwd(), 'templates', attachmentFolder, attachmentFile), // Bulletproof path resolution
+        cid: cidName
+      };
+    });
+  }
   
   // 1. Read the HTML file
   const htmlContent = await fs.readFile(filePath, 'utf-8');
@@ -49,6 +63,7 @@ export default async function handler(req, res) {
     to: email,
     subject: emailSubject,
     html: htmlContent,
+    attachments: attachmentFiles,
   };
 
   // 5. Send the email
