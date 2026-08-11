@@ -4,7 +4,7 @@ import { sendEmail } from './send-email.js';
 export async function sendWeeklyEmail() {
   const allData = await getAllSignupData();
   for (const item of allData) {
-    if (item.count > 6) continue;
+    if (item.count > 5) continue;
 
     const fileName = `day${item.count + 1}`;
 
