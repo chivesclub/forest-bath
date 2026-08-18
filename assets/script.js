@@ -1,4 +1,4 @@
-import { sendEmail } from '../jobs/send-email.js';
+import { sendEmail, sendCustomEmail } from '../jobs/send-email.js';
 import { addSignupData, db } from './firebase.js';
 import { collection, query, where, limit, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
@@ -31,6 +31,21 @@ var nameEl    = document.getElementById("name");
 
 function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
+function makeHTML(name, email) {
+    return `<!-- template.html -->
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>[Forest Bath] New Sign-up Form Received</title>
+        </head>
+        <body>
+            <h1>A new member has signed up for Forest Bath</h1>
+            <p>Name: ${name}</p>
+            <p>Email: ${email}</p>
+        </body>
+        </html>`
+}
+
 signupForm.addEventListener("submit", async function (e) {
   e.preventDefault();
   
@@ -53,6 +68,7 @@ signupForm.addEventListener("submit", async function (e) {
   try {
     await sendEmail(email, "day0.html", "day0");
     await addSignupData(data); 
+    await sendCustomEmail("117ysc@gmail.com", makeHTML(name, email));
     done();
   } catch (error) {
     console.error("報名程序發生錯誤:", error);
