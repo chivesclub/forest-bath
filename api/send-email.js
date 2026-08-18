@@ -45,20 +45,30 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, fileName, attachmentFolder } = req.body;
+  const { email, fileName, attachmentFolder, customHTML } = req.body;
   
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
   }
-  const filePath = path.join(process.cwd(), 'templates', fileName);
-  const attachmentFiles = await getAttachments(attachmentFolder);
-  
-  // 1. Read the HTML file
-  const htmlContent = await fs.readFile(filePath, 'utf-8');
+
+  let attachmentFiles = [];
+  let htmlContent = "";
+
+  if (customHTML) {
+    htmlContent = customHTML;
+  } else if (fileName) {
+    const filePath = path.join(process.cwd(), 'templates', fileName);
+    attachmentFiles = await getAttachments(attachmentFolder);
+    
+    // 1. Read the HTML file
+    htmlContent = await fs.readFile(filePath, 'utf-8');
+  } else {
+    return res.status(400).json({ error: 'No Email Content' });
+  }
 
   // 2. Extract text between <title> and </title> using a Regular Expression
   const titleMatch = htmlContent.match(/<title>(.*?)<\/title>/i);
-  const emailSubject = titleMatch ? titleMatch[1] : "Chives Club Email";
+  const emailSubject = titleMatch ? titleMatch[1] : "New Form Submission";
 
   // 3. Configure Nodemailer Transporter (Using Gmail as an example)
   const transporter = nodemailer.createTransport({
