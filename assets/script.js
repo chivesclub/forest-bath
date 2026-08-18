@@ -1,4 +1,4 @@
-import { sendEmail, sendCustomEmail } from '../jobs/send-email.js';
+import { sendEmail } from '../jobs/send-email.js';
 import { addSignupData, db } from './firebase.js';
 import { collection, query, where, limit, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
