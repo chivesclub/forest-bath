@@ -26,7 +26,8 @@
 3. Open the saved HTM file with any text editor, copy the HTM code. Create a new file named `dayX.html` (e.g. `day1.html`, `day2.html`, etc.) under the `templates` folder in the github repo and paste the HTM code into the new file.
 4. When converting DOCX file to HTM file, a folder containing the assets (`fileName_files`) is created locally. The folder should contain all images in the DOCX file. Move the images to a new folder with the exact same name as the HTML file on the github repo (`dayX`). Upload the folder to github under the `templates folder).
 5. In the HTML folder in the github repo, press CTRL+F and look for `img` tags (that is where the images are located in the HTML). Change the source `src` to `cid:imageFileName`, where imageFileName is the exact same name of the image under the corresponding image folder. For example, if the folder `day4` contains 2 images named `image1.png` and `image2.png`, then in `day4.html` the `src` of the `img` tags should be modified to `cid:image1.png` and `cid:image2.png`.
-6. If the title (or anywhere in the email) contains emoji, and the emoji is displayed as ugly code, copy the emoji from DOCX and paste it directly to the HTML file, replacing the ugly code.
+6. Paste this before the first line of the HTML file: `<!DOCTYPE html>`
+7. If the title (or anywhere in the email) contains emoji, and the emoji is displayed as ugly code, copy the emoji from DOCX and paste it directly to the HTML file, replacing the ugly code.
 ---
 
 ## ✨ 主要功能 Features
