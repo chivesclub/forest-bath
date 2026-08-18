@@ -1,6 +1,7 @@
 import { sendEmail, sendCustomEmail } from '../jobs/send-email.js';
 import { addSignupData, db } from './firebase.js';
 import { collection, query, where, limit, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+import { makeHTML } from './makeHTML.js'
 
 /* ---------------------------------------------------------------
     報名表單收件端點
@@ -30,21 +31,6 @@ var emailEl   = document.getElementById("email");
 var nameEl    = document.getElementById("name");
 
 function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-
-function makeHTML(name, email) {
-    return `<!-- template.html -->
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>[Forest Bath] New Sign-up Form Received</title>
-        </head>
-        <body>
-            <h3>A new member has signed up for Forest Bath</h3>
-            <p>Name: ${name}</p>
-            <p>Email: ${email}</p>
-        </body>
-        </html>`
-}
 
 signupForm.addEventListener("submit", async function (e) {
   e.preventDefault();
