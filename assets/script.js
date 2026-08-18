@@ -39,7 +39,7 @@ function makeHTML(name, email) {
             <title>[Forest Bath] New Sign-up Form Received</title>
         </head>
         <body>
-            <h1>A new member has signed up for Forest Bath</h1>
+            <h3>A new member has signed up for Forest Bath</h3>
             <p>Name: ${name}</p>
             <p>Email: ${email}</p>
         </body>
@@ -68,7 +68,7 @@ signupForm.addEventListener("submit", async function (e) {
   try {
     await sendEmail(email, "day0.html", "day0");
     await addSignupData(data); 
-    await sendCustomEmail("117ysc@gmail.com", makeHTML(name, email));
+    await sendCustomEmail("chivesclub2024@gmail.com", makeHTML(name, email));
     done();
   } catch (error) {
     console.error("報名程序發生錯誤:", error);
