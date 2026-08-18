@@ -50,8 +50,17 @@ signupForm.addEventListener("submit", async function (e) {
 
   const done = function () { formCard.classList.add("is-done"); };
   
-  sendEmail(email, "day0.html", "day0");
-  addSignupData(data);
+  try {
+    await sendEmail(email, "day0.html", "day0");
+    await addSignupData(data); 
+    done();
+  } catch (error) {
+    console.error("報名程序發生錯誤:", error);
+    showToast("系統繁忙，請稍後再試");
+    
+    submitBtn.disabled = false;
+    submitBtn.textContent = "送出，開始我的森林浴之旅";
+  }
 });
 
 /* ---------- 提示訊息 ---------- */
