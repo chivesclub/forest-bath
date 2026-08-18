@@ -1,4 +1,4 @@
-import { sendEmail } from '../jobs/send-email.js';
+import { sendEmail, sendCustomEmail } from '../jobs/send-email.js';
 import { addSignupData, db } from './firebase.js';
 import { collection, query, where, limit, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
@@ -23,6 +23,7 @@ function shareUrl() {
 }
 
 /* ---------- 報名表單 ---------- */
+const signupForm = document.getElementById("signupForm");
 var submitBtn = document.getElementById("submitBtn");
 var formCard  = document.getElementById("formCard");
 var emailEl   = document.getElementById("email");
@@ -30,7 +31,9 @@ var nameEl    = document.getElementById("name");
 
 function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
-submitBtn.addEventListener("click", async function () {
+signupForm.addEventListener("submit", async function (e) {
+  e.preventDefault();
+  
   const email = emailEl.value.trim();
   const name  = nameEl.value.trim();
   const data = JSON.stringify({ name: name, email: email });
@@ -47,29 +50,8 @@ submitBtn.addEventListener("click", async function () {
 
   const done = function () { formCard.classList.add("is-done"); };
   
-  let response = null;
-
-  if (SIGNUP_ENDPOINT) {
-    try {
-      response = await fetch(SIGNUP_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: data
-      });
-      done();
-    } catch (error) {
-      console.error("提交失敗:", error);
-      done();
-    }
-  } else {
-    console.warn("[森林浴] 尚未設定 SIGNUP_ENDPOINT，本次報名未實際寄出。");
-    setTimeout(done, 500);
-  }
-
-  if (response && response.ok){
-    sendEmail(email, "day0.html", "day0"); // Change file name to email.html
-    addSignupData(data);
-  }
+  sendEmail(email, "day0.html", "day0");
+  addSignupData(data);
 });
 
 /* ---------- 提示訊息 ---------- */
