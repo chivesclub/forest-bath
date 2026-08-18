@@ -1,3 +1,10 @@
-import { sendWeeklyEmail } from './batch-send.js'
+import { sendWeeklyEmail, sendTestingEmail } from './batch-send.js'
 
-sendWeeklyEmail();
+const eventName = process.env.GITHUB_EVENT_NAME;
+
+if (eventName === 'workflow_dispatch') {
+  sendTestingEmail();
+} else if (eventName === 'schedule') {
+  sendWeeklyEmail();
+}
+
